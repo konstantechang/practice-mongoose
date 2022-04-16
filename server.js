@@ -2,9 +2,22 @@ const http = require("http");
 const mongoose = require('mongoose');
 const Room = require('./models/room');   //Room的R大寫代表它是一個model
 const headers = require("./headers");
+const dotenv = require("dotenv");
+const path = require("path");
 
-//連接資料庫
-mongoose.connect('mongodb://localhost:27017/hotel').then( () => {
+dotenv.config({path:"./config.env"});
+
+const DB = process.env.DATABASE.replace('<password>', process.env.DATABASE_PASSWORD)
+
+// //連接資料庫(local)
+// mongoose.connect('mongodb://localhost:27017/hotel').then( () => {
+//     console.log("資料庫連線成功");
+// } ).catch( (error) => {
+//     console.log(error.reason);
+// } );
+
+//連接資料庫(remote heroku)
+mongoose.connect(DB).then( () => {
     console.log("資料庫連線成功");
 } ).catch( (error) => {
     console.log(error.reason);
@@ -118,4 +131,4 @@ const requestListener = async (req, res) => {
 }
 
 const server = http.createServer(requestListener);
-server.listen(3005);
+server.listen(process.env.PORT);
