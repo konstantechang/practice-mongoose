@@ -1,6 +1,7 @@
 const http = require("http");
 const mongoose = require('mongoose');
 const Room = require('./models/room');   //Room的R大寫代表它是一個model
+const headers = require("./headers");
 
 //連接資料庫
 mongoose.connect('mongodb://localhost:27017/hotel').then( () => {
@@ -38,9 +39,19 @@ Room.create({
 //     console.log(error);
 // })
 
-const requestListener = (req, res) => {
-    console.log(req.url);
-    res.end();
+const requestListener = async (req, res) => {
+
+    if(req.url == "/rooms" && req.method == "GET"){
+        const rooms = await Room.find();
+        res.writeHead(200, headers);
+        res.write(JSON.stringify({
+            "status": "success",
+            rooms
+        }));
+            res.end();
+
+    }
+
 }
 
 const server = http.createServer(requestListener);
