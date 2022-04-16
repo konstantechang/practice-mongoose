@@ -1,5 +1,7 @@
 const http = require("http");
 const mongoose = require('mongoose');
+const Room = require('./models/room');   //Room的R大寫代表它是一個model
+
 //連接資料庫
 mongoose.connect('mongodb://localhost:27017/hotel').then( () => {
     console.log("資料庫連線成功");
@@ -7,31 +9,12 @@ mongoose.connect('mongodb://localhost:27017/hotel').then( () => {
     console.log(error.reason);
 } );
 
-const roomSchema = new mongoose.Schema({
-    name:String,
-    price: {
-        type:Number,
-        required: [true, "價格必填"]
-    },
-    rating: Number,
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        select: false,
-    }
-}, 
-{
-    versionKey:false
 
-});
-
-const Room = mongoose.model('Room',
- roomSchema);//小小特性  collection Room 進 mongoDB 會強制小寫 room,強制加s --> rooms
 
 //第二種create法 
 
 Room.create({
-    name: "總統超級單人房2",
+    name: "總統超級單人房3",
     price: 2000,
     rating: 4.5,
 }).then( () => {
