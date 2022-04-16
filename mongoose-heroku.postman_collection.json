@@ -9,7 +9,19 @@
 			"name": "取得所有的房型",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://fathomless-ridge-92116.herokuapp.com/rooms",
+					"protocol": "https",
+					"host": [
+						"fathomless-ridge-92116",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"rooms"
+					]
+				}
 			},
 			"response": []
 		},
