@@ -80,14 +80,14 @@ const requestListener = async (req, res) => {
                         rating: data.rating,
                     }
 
-                )// end of Room.create()
-                .then( () => {
-                    console.log("新增資料  寫入成功!!")
-                } )
-                .catch( error => {//  如果 await 失敗, error 由外部的 catch()處理
-                    return error;
+                );// end of Room.create()
+                // .then( () => {
+                //     console.log("新增資料  寫入成功!!")
+                // } )
+                // .catch( error => {//  如果 await 失敗, error 由外部的 catch()處理
+                //     return error;
 
-                });
+                // });
                 res.writeHead(200, headers);
                 res.write(JSON.stringify({
                     "status": "success",
