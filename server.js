@@ -67,7 +67,7 @@ const requestListener = async (req, res) => {
             "status": "success",
             rooms
         }));
-            res.end();
+        res.end();
 
     }else if(req.url == "/rooms" && req.method == "POST"){
         req.on( 'end' , async () => {
@@ -114,6 +114,19 @@ const requestListener = async (req, res) => {
             rooms: [],
         }));
         res.end();
+
+
+    }else if(req.url.startsWith('/rooms/') && req.method == "DELETE"){
+        const id = req.url.split('/').pop();
+        //console.log(id);
+        const rooms = await Room.findByIdAndDelete(id);
+        res.writeHead(200, headers);
+        res.write(JSON.stringify({
+            "status": "success",
+            rooms
+        }));
+        res.end();
+
 
 
     }else if(req.method == "OPTIONS"){
