@@ -53,6 +53,77 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "刪除單筆房型",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://fathomless-ridge-92116.herokuapp.com/rooms/626144a11b3c601ec8ef835d",
+					"protocol": "https",
+					"host": [
+						"fathomless-ridge-92116",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"rooms",
+						"626144a11b3c601ec8ef835d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除所有房型",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://fathomless-ridge-92116.herokuapp.com/rooms",
+					"protocol": "https",
+					"host": [
+						"fathomless-ridge-92116",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"rooms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改單筆房型",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"獨棟小木屋12-22\",\r\n            \"price\": 2700,\r\n            \"rating\": 4.7\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fathomless-ridge-92116.herokuapp.com/rooms/626144b71b3c601ec8ef8360",
+					"protocol": "https",
+					"host": [
+						"fathomless-ridge-92116",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"rooms",
+						"626144b71b3c601ec8ef8360"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
