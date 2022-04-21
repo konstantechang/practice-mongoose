@@ -129,6 +129,52 @@ const requestListener = async (req, res) => {
 
 
 
+    }else if(req.url.startsWith('/rooms/')  && req.method == 'PATCH'){
+        req.on('end', async () => {
+            try {
+                const data = JSON.parse(body);
+                const id = req.url.split('/').pop();
+                if(data.price > 0 || data.price !== ''){
+                    let {name, price, rating} = data;
+                    const rooms = await Room.findByIdAndUpdate(id,
+                        {$set: {
+                            name,
+                            price,
+                            rating,
+                        },
+                    }
+                        
+                    );
+                    res.writeHead(200, headers);
+                    res.write(JSON.stringify({
+                        "status": "success",
+                        rooms
+                    }));
+                    res.end();
+
+
+
+                }else{
+                    res.writeHead(400, headers);
+                    res.write(JSON.stringify({
+                    "status":false,
+                    "message": "欄位不正確， 或沒有此  ID",
+                    "error": error,
+                }))
+                res.end();
+                }
+            } catch (error) {
+                res.writeHead(400, headers);
+                res.write(JSON.stringify({
+                    "status":false,
+                    "message": "欄位不正確， 或沒有此  ID",
+                    "error": error,
+                }))
+                res.end();
+            }
+
+        });//end of req.on()
+
     }else if(req.method == "OPTIONS"){
         res.writeHead(200, headers);
         res.end();
